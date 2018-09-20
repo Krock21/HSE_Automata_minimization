@@ -5,15 +5,16 @@ using namespace std;
 string alphabet;
 int n, q0, termcnt;
 vector<bool> isterm;
-vector<vector<int>> g;
-vector<vector<vector<int>>> pg;
-vector<vector<bool>> used;
+vector <vector<int>> g;
+vector <vector<vector < int>>>
+pg;
+vector <vector<bool>> used;
 vector<bool> isreachable;
 
 int q2, classcnt, termcnt2;
 vector<bool> isterm2;
 vector<int> classnum;
-vector<vector<int>> g2;
+vector <vector<int>> g2;
 
 void reachdfs(int v) {
     if (isreachable[v]) return;
@@ -24,6 +25,9 @@ void reachdfs(int v) {
 }
 
 int main(int argc, char **argv) {
+    if (argc > 1) {
+        freopen(argv[1], "r", stdin);
+    }
     cin >> alphabet;
     cin >> n >> q0 >> termcnt;
     q0--;
@@ -32,7 +36,7 @@ int main(int argc, char **argv) {
     classnum.resize(n, -1);
     used.resize(n, vector<bool>(n));
     g.resize(n, vector<int>(alphabet.size()));
-    pg.resize(n, vector<vector<int>>(alphabet.size()));
+    pg.resize(n, vector < vector < int >> (alphabet.size()));
     for (int i = 0; i < termcnt; ++i) {
         int cur;
         cin >> cur;
@@ -47,7 +51,7 @@ int main(int argc, char **argv) {
         }
     }
     reachdfs(q0);
-    queue<pair<int, int>> q;
+    queue <pair<int, int>> q;
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
             if (!isreachable[i] || !isreachable[j]) continue;
@@ -101,7 +105,7 @@ int main(int argc, char **argv) {
             g2[classnum[i]][j] = classnum[g[i][j]];
         }
     }
-    if (argc > 1 && strcmp(argv[1], "-raw") == 0) {
+    if (argc > 2 && strcmp(argv[2], "-raw") == 0 || argc > 1 && strcmp(argv[1], "-raw") == 0) {
         cout << classcnt << "\n";
         cout << q2 + 1 << " " << termcnt2 << " ";
         for (int i = 0; i < classcnt; ++i) {

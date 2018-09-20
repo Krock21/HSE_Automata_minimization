@@ -1,1 +1,1 @@
-./main $1 | dot -Tpng -o out.png
+./main $1 $2 | dot -Tpng -o out.png
