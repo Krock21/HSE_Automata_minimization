@@ -1,0 +1,1 @@
+# HSE_Automata_minimization
